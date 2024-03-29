@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container" style="width: 1300px">
+        <div style="margin-bottom: 10px">
+            <a class="btn btn-success" href="/user/add/">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                Add User
+            </a>
+        </div>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                UserInfo List
+            </div>
+
+            <!-- Table -->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">UserName</th>
+                    <th class="text-center">Password</th>
+                    <th class="text-center">Age</th>
+                    <th class="text-center">User Type</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Phonen Number</th>
+                    <th class="text-center">Gender</th>
+                    <th class="text-center">Depart</th>
+                    <th class="text-center">Role</th>
+                    <th class="text-center">Accoun Status</th>
+                    <th class="text-center">Employment Time</th>
+                    <th class="text-center" style="width: 150px">Manage</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                    <tr>
+                        <th style="width: 90px" class="text-center" scope="row">{{ obj.id }}</th>
+                        <td class="text-center">{{ obj.username }}</td>
+                        <td class="text-center">{{ obj.password }}</td>
+                        <td class="text-center">{{ obj.age }}</td>
+                        <td class="text-center">{{ obj.get_usertype_display }}</td>
+                        <td class="text-center">{{ obj.email }}</td>
+                        <td class="text-center">{{ obj.phonenumber }}</td>
+                        <td class="text-center">{{ obj.get_gender_display }}</td>
+                        <td class="text-center">{{ obj.depart.deptname }}</td>
+                        <td class="text-center">{{ obj.roles.role_name }}</td>
+                        <td class="text-center">{{ obj.get_accoun_status_display }}</td>
+                        <td class="text-center">{{ obj.employment_time|date:"Y-m-d" }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-xs" href="/user/{{ obj.id }}/ebit/">update</a>
+                            <a class="btn btn-danger btn-xs" href="/user/{{ obj.id }}/delete/">delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <ul class="pagination">
+            {{ page_string }}
+        </ul>
+    </div>
+{% endblock %}

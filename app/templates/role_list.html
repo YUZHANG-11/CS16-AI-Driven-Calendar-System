@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+    <div class="container" style="width: 1300px" >
+        <div style="padding-bottom: 10px">
+            <a class="btn btn-success" href="/role/add/">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                Add Role
+            </a>
+            <div style="float: right;width: 300px;">
+                <form method="get">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search for..."
+                               value="{{ search_data }}">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                      </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                Role List
+            </div>
+            <!-- Table -->
+            <table class="table table-bordered table-striped ">
+                <thead>
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Role Name</th>
+                    <th class="text-center">Role scope</th>
+                    <th class="text-center">Role Status</th>
+                    <th class="text-center">Manage</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in queryset %}
+                    <tr>
+                        <th style="width: 90px" class="text-center" scope="row">
+                            {{ item.id }}
+                        </th>
+                        <td class="text-center">{{ item.role_name }}</td>
+                        <td class="text-center">{{ item.get_data_scope_display }}</td>
+                        <td class="text-center">{{ item.get_status_display }}</td>
+                        <td style="width: 150px" class="text-center">
+                            <a class="btn btn-primary btn-xs" href="/role/{{ item.id }}/ebit">update</a>
+                            <a class="btn btn-danger btn-xs" href="/role/delete?nid={{ item.id }}">delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="clearfix">
+            <ul class="pagination">
+                {{ page_string }}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
