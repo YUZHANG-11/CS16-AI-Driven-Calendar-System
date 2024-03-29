@@ -1,0 +1,28 @@
+{% extends "base-left.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container" style="width: 1300px;padding-top: 50px">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">{{ title }}</div>
+            <div class="panel-body">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label>{{ field.label }}</label>
+                            {{ field }}
+                        <span style="color: red">{{ field.errors.0 }}</span>
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

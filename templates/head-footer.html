@@ -1,0 +1,89 @@
+{% extends "base-static.html" %}
+{% load static %}
+
+{% block main %}
+    <!-- Main Header -->
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="/myreport/query_all/" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>Sand</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Toggle navigation</b></span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/depart/list/">Dept Manager</a></li>
+                    <li><a href="/user/list/">User Manager</a></li>
+                    <li><a href="/menu/list/">Menu Manager</a></li>
+                    <li><a href="/role/list/">Role Manager</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Notifications Menu -->
+                    <li class="dropdown notifications-menu">
+                        <!-- Menu toggle button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-danger"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">Message：</li>
+                            <li>
+                                <!-- Inner Menu: contains the notifications -->
+                                <ul class="menu">
+                                    <li><!-- start notification -->
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i>
+                                            The message center function is not yet open, please stay tuned。
+                                            --RobbieHan
+                                        </a>
+                                    </li>
+                                    <!-- end notification -->
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">View all messages</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <!-- The user image in the navbar-->
+                            <img src="{% static 'img/default.jpg' %}" class="img-circle" style="width: 25px;height: 25px" alt="User profile picture">&nbsp;
+                            {{ request.session.info.name }}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/user/{{ request.session.info.id }}/queryById/">My info</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/logout/">Sign up</a></li>
+                        </ul>
+                    </li>
+                    <li style="padding-right: 40px">
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    {% block middle %}
+
+    {% endblock %}
+
+    <!-- Main Footer -->
+    <footer class="main-footer text-center">
+        <strong>
+            Copyright © 2024-2025 Toggle navigation
+        </strong>
+        technical support：<a href="#" target="_blank">Toggle navigation</a>
+    </footer>
+
+{% endblock %}
